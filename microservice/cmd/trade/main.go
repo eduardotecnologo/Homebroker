@@ -30,14 +30,14 @@ func main() {
 
 	go kafka.Consume(kafkaMsgChan) // T2
 
-	// recebe do canal do kafka, joga no input, processa, joga no output e depois publica no kafka
+	// recebe do canal do kafka, joga no input, processa joga no output e depois publica no kafka
 	book := entity.NewBook(ordersIn, ordersOut, wg)
 	go book.Trade() // T3
 
 	go func() {
 		for msg := range kafkaMsgChan {
 			wg.Add(1)
-			fmt.Println(string(msg.Value)) // msg do Kafka no terminal
+			fmt.Println(string(msg.Value))
 			tradeInput := dto.TradeInput{}
 			err := json.Unmarshal(msg.Value, &tradeInput)
 			if err != nil {

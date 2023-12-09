@@ -8,7 +8,7 @@ import (
 type Book struct {
 	Order         []*Order
 	Transactions  []*Transaction
-	OrdersChan    chan *Order // input - recebe as ordens do Kafka
+	OrdersChan    chan *Order // input
 	OrdersChanOut chan *Order
 	Wg            *sync.WaitGroup
 }
@@ -39,8 +39,9 @@ func (b *Book) Trade() {
 			buyOrders[asset] = NewOrderQueue()
 			heap.Init(buyOrders[asset])
 		}
+
 		if sellOrders[asset] == nil {
-			buyOrders[asset] = NewOrderQueue()
+			sellOrders[asset] = NewOrderQueue()
 			heap.Init(sellOrders[asset])
 		}
 
