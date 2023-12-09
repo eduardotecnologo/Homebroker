@@ -1,9 +1,17 @@
 {
     "order_id": "1",
     "investor_id": "Eduardo",
-    "asset_id": "assset1",
+    "asset_id": "asset1",
     "current_shares": 10,
     "shares": 5,
     "price": 5.0,
     "order_type": "SELL"
+},
+{
+    "investor_id": "Alexandre",
+    "asset_id": "asset1",
+    "current_shares": 5,
+    "shares": 5,
+    "price": 5.0,
+    "order_type": "BUY"
 }
